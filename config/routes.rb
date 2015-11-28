@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root to: redirect("/users/new") #bands index
+  root to: redirect("/session/new")
 
   resources :users, only: [:create, :new, :index, :show, :edit, :update]
   resource :session, only: [:create, :new, :destroy]

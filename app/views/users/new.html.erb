@@ -1,18 +1,29 @@
 <h1>New User</h1>
+<div class="user-form">
 <form action="<%= users_url %>" method="post">
   <%= auth_token %>
-  <label for="user_name">Name:</label>
-  <input type="text" name="user[name]" value="" id="user_name">
-  <br>
-  <label for="user_email">Email:</label>
+  <div class="form-group">
+    <label for="user_name">Name</label>
+    <br>
+    <input type="text"
+      name="user[name]"
+      value="<%= @user.name %>"
+      id="user_name">
+  </div>
+  <div class="form-group">
+    <label for="user_email">Email</label>
+    <br>
     <input
       type="text"
       name="user[email]"
-      id="user_email"
-      value="<%= @user.email %>">
-  <br>
-  <label for="user_password">Password:</label>
-  <input type="password" name="user[password]" id="user_password">
-  <br>
-    <input type="submit" value="Sign Up">
+      value="<%= @user.email %>"
+      id="user_email">
+  </div>
+  <div class="form-group">
+    <label for="user_password">Password</label>
+    <br>
+    <input type="password" name="user[password]" id="user_password">
+  </div>
+    <button type="submit" class="btn btn-primary">Sign Up</button>
 </form>
+</div>
