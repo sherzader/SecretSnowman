@@ -1,5 +1,6 @@
 <div class="user-form">
-<h1>New User</h1>
+<h1>New Elf</h1>
+<br>
 <form action="<%= users_url %>" method="post">
   <%= auth_token %>
   <div class="form-group">
@@ -26,4 +27,6 @@
   </div>
     <button type="submit" class="btn btn-primary">Sign Up</button>
 </form>
+<br>
+Already have an account? <%= link_to "Log In!", login_url%>
 </div>

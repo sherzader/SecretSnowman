@@ -12,7 +12,7 @@ class User < ActiveRecord::Base
     user = User.find_by(email: email)
 
     return nil if user.nil?
-    user && user.is_password?(password) ? user : nil
+    user && user.valid_password?(password) ? user : nil
   end
 
   def password=(password)
@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
     self.password_digest = BCrypt::Password.create(password)
   end
 
-  def is_password?(password)
+  def valid_password?(password)
     BCrypt::Password.new(self.password_digest).is_password? password
   end
 
