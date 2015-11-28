@@ -36,6 +36,10 @@
       font-family: cursive;
       font-size: 15px;
     }
+    .interests {
+      font-family: "Courier";
+      font-size: 15px;
+    }
   </style>
 </head>
 <body>
@@ -47,7 +51,7 @@
       <ul class="nav nav-pills">
         <!--MySecretSanta will link to that user's profile/show page -->
        <li><a href="<%= user_url(current_user) %>">My Secret Santa</a></li>
-       <li><a href="<%= edit_user_url %>">My Profile</a></li>
+       <li><a href="<%= edit_user_url(current_user) %>">My Profile</a></li>
       </ul>
       </nav>
       <p class="current_user"><%= current_user.name %></p>

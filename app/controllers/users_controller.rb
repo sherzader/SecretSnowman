@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :require_login!, only: [:index, :show]
+before_action :require_login!, only: [:index, :show, :edit, :update]
   def create
     @user = User.new(user_params)
 
@@ -29,7 +29,7 @@ before_action :require_login!, only: [:index, :show]
     @user = User.find(params[:id])
 
     if @user.update(user_params)
-      redirect_to user_url(@user)
+      redirect_to edit_user_url(@user)
     else
       flash.now[:errors] = @user.errors.full_messages
       render :edit

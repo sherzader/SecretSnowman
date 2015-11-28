@@ -1,0 +1,28 @@
+<h2>Update Your Interests</h2>
+<br>
+<p class="interests">Here is where you can express to your fellow
+  Secret Santa your desperate need for a chair cushion during lecture,
+  Taco Bell's latest crunch wrap supreme, or a sexy coffee mug.
+  Or maybe your tastes lie in the arts? Perhaps Adele's much
+  anticipated album <i>25</i> is more your cup of tea. <br><br>
+  Also feel free to express your disdain for certain items that
+  misrepresent an idea or culture and how this has directly affected you,
+  if at all.
+</p>
+<br>
+<form action="<%= user_url(@user) %>" method="post">
+  <%= auth_token %>
+  <input type="hidden" name="_method" value="patch">
+    <label>Material/Spiritual desires:
+      <br>
+    <textarea rows="5" cols="50" name="user[taste]"
+    value="<%= @user.taste %>">
+    glow in the dark yoyo,
+    glow in the dark socks,
+    a cute lunchbox,
+    a hug
+    </textarea>
+    </label>
+    <br>
+    <input type="submit" value="Update Profile">
+</form>

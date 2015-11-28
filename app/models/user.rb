@@ -5,8 +5,7 @@ class User < ActiveRecord::Base
 
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, :session_token, :password_digest,
-      :name, presence: true
-  validates :taste, length: { maximum: 140, allow_nil: true }
+      :name, :taste, presence: true
   validates :email, :name, :session_token, uniqueness: true
 
   def self.generate_session_token
