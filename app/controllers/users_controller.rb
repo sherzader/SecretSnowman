@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-before_action :require_login!, only: [:index, :show, :edit]
+before_filter :require_login!, only: [:index, :show, :edit, :update]
   def create
     @user = User.new(user_params)
 
@@ -31,7 +31,7 @@ before_action :require_login!, only: [:index, :show, :edit]
     if @user.update(user_params)
       redirect_to edit_user_url(@user)
     else
-      redirect_to users_url
+      render :edit
     end
   end
 
