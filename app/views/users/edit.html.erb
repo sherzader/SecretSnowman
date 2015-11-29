@@ -1,35 +1,36 @@
-<h2>Update Your Interests</h2>
-<br>
-<p class="interests">Here is where you can express to your fellow
-  Secret Santa your desperate need for a chair cushion during lecture,
-  Taco Bell's latest crunch wrap supreme, or a sexy coffee mug.
-  Or maybe your tastes lie in the arts? Perhaps Adele's much
-  anticipated album <i>25</i> is more your cup of tea. <br><br>
-  Also feel free to express your disdain for certain items that
-  misrepresent an idea or culture and how this has directly affected you,
-  if at all.
-</p>
-<br>
-<form action="<%= user_url(@user) %>" method="post">
-  <input
-  type="hidden"
-  name="authenticity_token"
-  value="<%= form_authenticity_token %>">
-  <input name="_method" type="hidden" value="patch">
-    <label>Material/Spiritual desires:
-      <br>
-    <textarea name="user[taste]" rows="5" cols="50"
-      value="<%= @user.taste %>">
-      <% if @user.taste.nil? %>
-        glow in the dark yoyo,
+<% if current_user == @user %>
+  <h2>Update Your Interests</h2>
+  <br>
+  <p class="interests">Here is where you can express to your fellow
+    Secret Santa your desperate need for a chair cushion during lecture,
+    Taco Bell's latest crunch wrap supreme, or a sexy coffee mug.
+    Or maybe your tastes lie in the arts? Perhaps Adele's much
+    anticipated album <i>25</i> is more your cup of tea. <br><br>
+    Also feel free to express your disdain for certain items that
+    misrepresent an idea or culture and how this has directly affected you,
+    if at all.
+  </p>
+  <br>
+  <form action="<%= user_url(@user) %>" method="post">
+    <input
+    type="hidden"
+    name="authenticity_token"
+    value="<%= form_authenticity_token %>">
+    <input name="_method" type="hidden" value="patch">
+      <label>Material/Spiritual desires:
+        <br>
+      <textarea name="user[taste]" rows="5" cols="50"
+        value="<%= @user.taste %>">
+        <% if @user.taste.nil? %>glow in the dark yoyo,
         glow in the dark socks,
         a cute lunchbox,
         a hug
-      <% else %>
-      <%= @user.taste %>
-    <% end %>
-    </textarea>
-    </label>
-    <br>
-    <input type="submit" value="Update Profile">
-</form>
+        <% else %>
+        <%= @user.taste %>
+      <% end %>
+      </textarea>
+      </label>
+      <br>
+      <input type="submit" value="Update Profile">
+  </form>
+<% end %>

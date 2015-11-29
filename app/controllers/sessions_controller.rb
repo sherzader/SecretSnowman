@@ -19,6 +19,6 @@ class SessionsController < ApplicationController
 
   def destroy
     log_out! #/session/:id destroy, log out page
-    redirect_to new_session_url
+    redirect_to login_url
   end
 end

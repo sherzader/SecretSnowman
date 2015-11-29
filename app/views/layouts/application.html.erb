@@ -44,6 +44,13 @@
     .jumbotron {
       text-align: center;
     }
+    .navbar {
+      font-family: cursive;
+      font-size: 15px;
+    }
+    .logout {
+      padding-top: 8px;
+    }
   </style>
 </head>
 <body>
@@ -51,16 +58,17 @@
       Secret Santa
     </div>
     <% if logged_in? %>
-      <nav class="navbar navbar-default">
-        <ul class="nav nav-pills">
-          <!--MySecretSanta will link to that user's profile/show page -->
-          <li><a href="<%= users_url %>">Home</a></li>
-          <li><a href="<%= user_url(current_user) %>">My Secret Santa</a></li>
-          <li><a href="<%= edit_user_url(current_user) %>">My Profile</a></li>
-        </ul>
-      </nav>
-      <p class="current_user"><%= current_user.name %></p>
-      <%= button_to "Log Out", logout_url, method: :delete %>
+      <div class="navbar">
+        <nav class="navbar navbar-default">
+          <ul class="nav nav-pills">
+            <li class="logout"><%= button_to "Log Out", session_url, method: :delete %></li>
+            <li><a href="<%= users_url %>">Home</a></li>
+            <li><a href="#">My Secret Santa</a></li>
+            <li><a href="<%= edit_user_url(current_user) %>">My Profile</a></li>
+          </ul>
+        </nav>
+      </div>
+      <p class="current_user">Hi <%= current_user.name %>!</p>
     <% end %>
 
   <div class="container">

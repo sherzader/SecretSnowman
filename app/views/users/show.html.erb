@@ -1,4 +1,12 @@
-<h1>This page is under construction!</h1>
-<br>
-<h3>Check back later :)</h3>
-<%= link_to "Back", users_url %>
+<div class="jumbotron">
+  <p class="interests">
+    <%= @user.name %>'s Interests:
+    <br>
+    <br>
+    <%= @user.taste %>
+    <br>
+    <% if current_user == @user %>
+      <%= link_to "Edit", edit_user_url(@user) %>
+    <% end %>
+  </p>
+</div>
