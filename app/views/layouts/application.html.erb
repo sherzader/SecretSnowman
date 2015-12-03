@@ -5,54 +5,8 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <style>
-    .errors {
-      color: red;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .banner {
-      color: red;
-      background-color: green;
-      padding: 5px;
-      text-align: center;
-      font-size: 50px;
-      font-weight: 300;
-      font-family: "Lucida Handwriting";
-      border-style: groove;
-      border-color: red;
-      border-width: 8px;
-    }
-    .headline {
-      font-family: "Brush Script MT";
-      font-size: 40px;
-      text-align: center;
-    }
-    .users {
-      text-align: center;
-      font-family: cursive;
-      font-size: 20px;
-    }
-    .current_user {
-      font-family: cursive;
-      font-size: 15px;
-    }
-    .interests {
-      font-family: "Courier";
-      font-size: 15px;
-    }
-    .jumbotron {
-      text-align: center;
-    }
-    .navbar {
-      font-family: cursive;
-      font-size: 15px;
-    }
-    .logout {
-      padding-top: 8px;
-    }
-  </style>
-</head>
+<link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'></head>
+<link href='https://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
 <body>
     <div class="banner">
       Secret Santa
@@ -61,20 +15,24 @@
       <div class="navbar">
         <nav class="navbar navbar-default">
           <ul class="nav nav-pills">
-            <li class="logout"><%= button_to "Log Out", session_url, method: :delete %></li>
+            <li class="logout"><%= button_to "Log Out", sessions_url, method: :delete %></li>
             <li><a href="<%= users_url %>">Home</a></li>
             <li><a href="#">My Secret Santa</a></li>
             <li><a href="<%= edit_user_url(current_user) %>">My Profile</a></li>
           </ul>
         </nav>
       </div>
+      <main class="content">
       <p class="current_user">Hi <%= current_user.name %>!</p>
+    <% else %>
+      <main class="content">
     <% end %>
 
   <div class="container">
     <p class="errors"><%= render "layouts/errors" %></p>
     <%= yield %>
   </div>
+  </main>
 
 </body>
 </html>

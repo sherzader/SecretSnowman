@@ -1,2 +1,87 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+body{
+  font-family: "Courier";
+}
+
+a{
+  color: #008176;
+}
+a:hover{
+  color: red;
+}
+
+.errors {
+  color: red;
+  border-radius: 5px;
+  text-align: center;
+}
+.banner {
+  color: red;
+  background-image: image-url("sweater-short.jpg");
+  background-position: 10% 20%;
+  padding: 5px;
+  text-align: center;
+  font-size: 80px;
+  font-weight: 300;
+  font-family: 'Amatic SC', cursive;
+  border-right: none;
+  border-style: groove;
+  border-color: red;
+  border-width: 8px;
+}
+.headline {
+  font-family: 'Parisienne', cursive;
+  font-size: 40px;
+  text-align: center;
+}
+.users {
+  text-align: center;
+  font-family: 'Parisienne', cursive;
+  font-size: 20px;
+}
+
+.headline::before {
+content:'';
+background: ('blackCarrot.png');/*url of image*/
+height: 16px;/*height of image*/
+width: 33px;/*width of image*/
+position: absolute;
+}
+.current_user {
+  font-family: 'Parisienne', cursive;
+  font-size: 25px;
+}
+.interests {
+  font-family: "Courier";
+  font-size: 15px;
+}
+.jumbotron {
+  text-align: center;
+}
+.navbar {
+  font-family: 'Courier', cursive;
+  font-size: 18px;
+}
+ul.nav{
+    padding: 0 10px;
+    //background: linear-gradient(135deg, #f1e767 61%,#feb645 100%);
+    border: none;
+}
+.logout {
+  padding-top: 8px;
+}
+
+main{
+  padding: 30px;
+}
+.scroll{
+  padding: 10px;
+  text-align: center
+}
+
+.button_to input{
+  color: white;
+  background: red !important;
+}
