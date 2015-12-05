@@ -29,11 +29,13 @@
       text-align: center;
     }
     .users {
+      color: green;
       text-align: center;
       font-family: cursive;
       font-size: 20px;
     }
     .current_user {
+      padding-left: 10px;
       font-family: cursive;
       font-size: 15px;
     }
@@ -45,11 +47,15 @@
       text-align: center;
     }
     .navbar {
+      color: green;
       font-family: cursive;
-      font-size: 15px;
+      font-size: 18px;
     }
     .logout {
       padding-top: 8px;
+    }
+    a {
+      color: green;
     }
   </style>
 </head>
@@ -75,6 +81,5 @@
     <p class="errors"><%= render "layouts/errors" %></p>
     <%= yield %>
   </div>
-
 </body>
 </html>

@@ -17,17 +17,14 @@
     name="authenticity_token"
     value="<%= form_authenticity_token %>">
     <input name="_method" type="hidden" value="patch">
-      <label>Material/Spiritual desires:
+      <label class="interests">Material/Spiritual desires:
         <br>
       <textarea name="user[taste]" rows="5" cols="50"
         value="<%= @user.taste %>">
-        <% if @user.taste.nil? %>glow in the dark yoyo,
-        glow in the dark socks,
-        a cute lunchbox,
-        a hug
-        <% else %>
+        <% if @user.taste.nil? || @user.taste.length <= 3 %>
+          <% @user.taste = default_taste %>
+        <% end %>
         <%= @user.taste %>
-      <% end %>
       </textarea>
       </label>
       <br>

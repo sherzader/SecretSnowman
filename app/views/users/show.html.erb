@@ -1,11 +1,12 @@
 <div class="jumbotron">
   <p class="interests">
-    <%= @user.name %>'s Interests:
+    <%= @user.name %> wants:
     <br>
     <br>
-    <%= @user.taste %>
+      <%= @user.taste.split(",").join("<br>").html_safe %>
     <br>
     <% if current_user == @user %>
+      <br>
       <%= link_to "Edit", edit_user_url(@user) %>
     <% end %>
   </p>

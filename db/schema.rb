@@ -13,6 +13,9 @@
 
 ActiveRecord::Schema.define(version: 20151128205035) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "users", force: :cascade do |t|
     t.string   "name",            null: false
     t.string   "email",           null: false
@@ -23,7 +26,7 @@ ActiveRecord::Schema.define(version: 20151128205035) do
     t.text     "taste"
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true
-  add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true
+  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
+  add_index "users", ["session_token"], name: "index_users_on_session_token", unique: true, using: :btree
 
 end
