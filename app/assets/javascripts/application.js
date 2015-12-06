@@ -15,3 +15,14 @@
 //= require turbolinks
 //= require_tree .
 //= require bootstrap
+// $(".jumbotron").css("max-height", "500px")
+
+$(function(){
+  var $mySlider = $(".slider:has(.interests)");
+  $mySlider.addClass("closed");
+    // console.log("ra");
+  setTimeout(function(){
+
+    $(".slider:has(.interests)").addClass("open");
+  }, 100);
+})

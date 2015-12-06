@@ -5,59 +5,9 @@
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <style>
-    .errors {
-      color: red;
-      border-radius: 5px;
-      text-align: center;
-    }
-    .banner {
-      color: red;
-      background-color: green;
-      padding: 5px;
-      text-align: center;
-      font-size: 50px;
-      font-weight: 300;
-      font-family: "Lucida Handwriting";
-      border-style: groove;
-      border-color: red;
-      border-width: 8px;
-    }
-    .headline {
-      font-family: "Brush Script MT";
-      font-size: 40px;
-      text-align: center;
-    }
-    .users {
-      color: green;
-      text-align: center;
-      font-family: cursive;
-      font-size: 20px;
-    }
-    .current_user {
-      padding-left: 10px;
-      font-family: cursive;
-      font-size: 15px;
-    }
-    .interests {
-      font-family: "Courier";
-      font-size: 15px;
-    }
-    .jumbotron {
-      text-align: center;
-    }
-    .navbar {
-      color: green;
-      font-family: cursive;
-      font-size: 18px;
-    }
-    .logout {
-      padding-top: 8px;
-    }
-    a {
-      color: green;
-    }
-  </style>
+  <link href='https://fonts.googleapis.com/css?family=Amatic+SC' rel='stylesheet' type='text/css'></head>
+  <link href='https://fonts.googleapis.com/css?family=Parisienne' rel='stylesheet' type='text/css'>
+
 </head>
 <body>
     <div class="banner">
@@ -67,19 +17,23 @@
       <div class="navbar">
         <nav class="navbar navbar-default">
           <ul class="nav nav-pills">
-            <li class="logout"><%= button_to "Log Out", session_url, method: :delete %></li>
+            <li class="logout"><%= button_to "Log Out", session_url, method: :delete, class: "log-out" %></li>
             <li><a href="<%= users_url %>">Home</a></li>
             <li><a href="#">My Secret Santa</a></li>
             <li><a href="<%= edit_user_url(current_user) %>">My Profile</a></li>
           </ul>
         </nav>
       </div>
+    <main class="content">
       <p class="current_user">Hi <%= current_user.name %>!</p>
+    <% else %>
+    <main class="content">
     <% end %>
 
-  <div class="container">
-    <p class="errors"><%= render "layouts/errors" %></p>
-    <%= yield %>
-  </div>
+    <div class="container slider">
+      <p class="errors"><%= render "layouts/errors" %></p>
+      <%= yield %>
+    </div>
+  </main>
 </body>
 </html>
