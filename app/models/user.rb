@@ -1,11 +1,16 @@
 class User < ActiveRecord::Base
   attr_reader :password
-  after_initialize :ensure_session_token
+  after_initialize :ensure_session_token, :ensure_default_taste
 
   validates :email, :session_token, :password_digest,
       :name, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, :name, :session_token, uniqueness: true
+
+  def ensure_default_taste
+    self.taste ||= "\nglow in the dark yoyo,
+      \nglow in the dark socks,\na cute lunchbox,\na hug".html_safe
+  end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)

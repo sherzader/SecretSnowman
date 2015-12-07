@@ -21,9 +21,6 @@
         <br>
       <textarea name="user[taste]" rows="5" cols="50"
         value="<%= @user.taste %>">
-        <% if @user.taste.nil? || @user.taste.length <= 3 %>
-          <% @user.taste = default_taste %>
-        <% end %>
         <%= @user.taste %>
       </textarea>
       </label>
