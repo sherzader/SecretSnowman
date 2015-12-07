@@ -33,6 +33,8 @@ gem 'bcrypt', '~> 3.1.7'
 #UNCOMMENT BELOW FOR HEROKU
 gem 'pg'
 
+gem 'mail'
+
 group :production do
   gem 'rails_12factor'
 end
