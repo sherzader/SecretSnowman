@@ -3,7 +3,7 @@ config.action_mailer.smtp_settings = {
   address:              'smtp.gmail.com',
   port:                 587,
   domain:               'https://secret-snowman.herokuapp.com',
-  user_name:            'aa.secret.santa',
+  user_name:            'aa.secret.snowman',
   password:             'markovandcurie',
   authentication:       'plain',
   enable_starttls_auto: true  }
