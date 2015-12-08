@@ -8,6 +8,9 @@ helper_method :default_taste
 
     if @user.save
       log_in!(@user)
+
+      UserMailer.welcome_email(@user).deliver_later
+
       redirect_to users_url
     else
       flash.now[:errors] = @user.errors.full_messages
