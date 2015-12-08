@@ -1,10 +1,8 @@
 class UsersController < ApplicationController
 before_filter :require_login!, only: [:index, :show, :edit, :update]
-helper_method :default_taste
 
   def create
     @user = User.new(user_params)
-    @user.taste = default_taste
 
     if @user.save
       log_in!(@user)
