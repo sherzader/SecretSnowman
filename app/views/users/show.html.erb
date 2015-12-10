@@ -1,4 +1,6 @@
 <div class="jumbotron">
+
+<% if true %>
   <p class="interests">
     <%= @user.name %> wants:
     <br>
@@ -10,4 +12,10 @@
       <%= link_to "Edit", edit_user_url(@user) %>
     <% end %>
   </p>
+<% else %>
+  <h3>Secret snowmen haven't been assigned yet - but thanks for checking eager beaver!</h3>
+  <br>
+  <br>
+
+<% end %>
 </div>
