@@ -7,6 +7,8 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, :name, :session_token, uniqueness: true
 
+  has_one :secretsnowman 
+
   def ensure_default_taste
     self.taste ||= "\nglow in the dark yoyo,
       \nglow in the dark socks,\na cute lunchbox,\na hug".html_safe

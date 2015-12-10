@@ -23,13 +23,20 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
 
   def index
     @users = User.all
+
+    # might need to delete when secret snowmen are assigned
+    unless params[:user_id].nil?
+      flash.now[:errors] = ["Secret Snowmen have not yet been assigned - but thanks for checking eager beaver!"]
+      flash.now[:errors] << []
+      flash.now[:errors] << ["In the meantime, feel free to check out the wish lists of your classmates:"]
+    end
   end
 
   def edit
     @user = User.find(params[:id])
 
-    if(@user.id != current_user.id)
-      flash.now[:errors] = ["Bad elf!  You cannot edit someone else's profile!"]
+    if @user.id != current_user.id
+      flash.now[:errors] = ["Bad elf!  You cannot edit someone else's: profile!"]
     end
   end
 
@@ -49,6 +56,6 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
 
   private
   def user_params
-    params.require(:user).permit(:name, :email, :password, :taste)
+    params.require(:user).permit(:name, :email, :password, :taste, :secretsnowman_id)
   end
 end
