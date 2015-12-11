@@ -83,6 +83,17 @@ position: absolute;
   font-family: "Courier";
   font-size: 15px;
 }
+
+label.interests{
+  max-width: 400px;
+  width: 100%;
+}
+
+.interests textarea{
+  width: 100%;
+  height: 100px;
+}
+
 .jumbotron {
   text-align: center;
   background: none;

@@ -19,13 +19,12 @@
     <input name="_method" type="hidden" value="patch">
       <label class="interests">Material/Spiritual desires:
         <br>
-      <textarea name="user[taste]" rows="5" cols="50"
-        value="<%= @user.taste %>">
-        <% if @user.taste.nil? || @user.taste.length <= 3 %>
-          <% @user.taste = default_taste %>
-        <% end %>
-        <%= @user.taste %>
-      </textarea>
+      <textarea name="user[taste]"
+        value="<%= @user.taste %>"><%
+        if @user.taste.nil? || @user.taste.length <= 3 %><%
+          @user.taste = default_taste %><%
+        end %><%=
+        @user.taste %></textarea>
       </label>
       <br>
       <input type="submit" value="Update Profile">

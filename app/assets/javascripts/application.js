@@ -18,6 +18,13 @@
 // $(".jumbotron").css("max-height", "500px")
 
 $(function(){
+  $(".users a").on("click", function(){
+    console.log("boo");
+    openSlider();
+  })
+})
+
+function openSlider(){
   var $mySlider = $(".slider:has(.interests)");
   $mySlider.addClass("closed");
     // console.log("ra");
@@ -25,4 +32,4 @@ $(function(){
 
     $(".slider:has(.interests)").addClass("open");
   }, 100);
-})
+}

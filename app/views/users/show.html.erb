@@ -3,7 +3,9 @@
     <%= @user.name %> wants:
     <br>
     <br>
-      <%= @user.taste.split(",").join("<br>").html_safe %>
+      <% if @user.taste%>
+        <%= @user.taste.split(",").join("<br>").html_safe %>
+      <% end %>
     <br>
     <% if current_user == @user %>
       <br>
