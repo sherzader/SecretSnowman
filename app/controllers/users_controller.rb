@@ -7,7 +7,7 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
     if @user.save
       log_in!(@user)
 
-      UserMailer.welcome_email(@user).deliver_later
+      # UserMailer.welcome_email(@user).deliver_later
 
       redirect_to users_url
     else
