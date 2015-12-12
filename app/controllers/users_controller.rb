@@ -36,7 +36,7 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
     @user = User.find(params[:id])
 
     if @user.id != current_user.id
-      flash.now[:errors] = ["Bad elf!  You cannot edit someone else's: profile!"]
+      flash.now[:errors] = ["Bad elf!  You cannot edit someone else's profile!"]
     end
   end
 

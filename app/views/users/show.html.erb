@@ -5,7 +5,7 @@
     <%= @user.name %> wants:
     <br>
     <br>
-    <%= @user.taste.split("\n").join("<br>").html_safe %>
+    <%= @user.taste.split("\n").join("<br>") %>
     <br>
     <% if current_user == @user %>
       <br>
