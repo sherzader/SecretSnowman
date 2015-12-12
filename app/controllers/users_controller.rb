@@ -6,9 +6,10 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
 
     if @user.save
       log_in!(@user)
-
+      flash[:errors] = ["Do not forget to update your wish list."]
+      flash[:errors] << []
+      flash[:errors] << ["Go to My Profile to do so."]
       # UserMailer.welcome_email(@user).deliver_later
-
       redirect_to users_url
     else
       flash.now[:errors] = @user.errors.full_messages
