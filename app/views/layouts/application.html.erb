@@ -23,7 +23,7 @@
             <% if current_user.secretsnowman_id.nil? %>
             <%    url = user_secretsnowman_index_url(current_user[:id]) %>
             <% else %>
-            <%    url = user_secretsnowman_url(current_user[:secretsnowman_id], current_user[:id]) %>
+            <%    url = user_secretsnowman_url(current_user[:id], current_user[:secretsnowman_id]) %>
             <% end %>
 
             <li><a href="<%= url %>">My Secret Snowman</a></li>
