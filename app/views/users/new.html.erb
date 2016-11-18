@@ -26,7 +26,16 @@
     <br>
     <input type="password" name="user[password]" id="user_password">
   </div>
-    <input type="submit" class="btn btn-success btn-lg" value="Sign Up">
+  <div class="form-group">
+    <label for="user_group">Group</label>
+    <br>
+    <select id="user_group" name="user[group]">
+      <% User.groups.each do |group| %>
+        <option value="<%= group %>"><%= group %></option>
+      <% end %>
+    </select>
+  </div>
+  <input type="submit" class="btn btn-success btn-lg" value="Sign Up">
 </form>
 <br>
 <%= link_to "Already have an account?  Log In!", login_url%>

@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  GROUPS = ["Oct 2015 Cohort", "a/A Staff 2016"]
+
   attr_reader :password
   after_initialize :ensure_session_token, :ensure_default_taste
 
@@ -6,12 +8,21 @@ class User < ActiveRecord::Base
       :name, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, :name, :session_token, uniqueness: true
+  validates :group, inclusion: { in: GROUPS }
+  # validate :not_a_ghost
 
-  has_one :secretsnowman 
+  has_one :secretsnowman
+
+  def self.groups
+    GROUPS
+  end
+
+  def not_a_ghost
+    errors[:boooo] << " - no hacking!" if group == GROUPS[0]
+  end
 
   def ensure_default_taste
-    self.taste ||= "\nglow in the dark yoyo,
-      \nglow in the dark socks,\na cute lunchbox,\na hug".html_safe
+    self.taste ||= "\nglow in the dark yoyo, \nglow in the dark socks,\na cute lunchbox,\na hug".html_safe
   end
 
   def self.find_by_credentials(email, password)
