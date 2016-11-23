@@ -9,12 +9,35 @@ class User < ActiveRecord::Base
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :email, :name, :session_token, uniqueness: true
   validates :group, inclusion: { in: GROUPS }
-  # validate :not_a_ghost
+  validate :not_a_ghost
 
-  has_one :secretsnowman
+  belongs_to :secretsnowman, class_name: :User
 
   def self.groups
     GROUPS
+  end
+
+  def self.assign_secret_santas(group_name)
+    user_ids = User.where(group: group_name).pluck(:id)
+    offset = rand(user_ids.length - 2) + 1
+    snowman_ids = user_ids.drop(offset) + user_ids.take(offset)
+
+    snowman_ids.each_with_index do |el, idx|
+      user = User.find(user_ids[idx])
+      user.update_attributes(secretsnowman_id: el)
+    end
+
+    nil
+  end
+
+  def self.remove_secret_santas(group_name)
+    users = User.where(group: group_name)
+
+    users.each do |el|
+      user.update_attributes(secretsnowman_id: el)
+    end
+
+    nil
   end
 
   def not_a_ghost

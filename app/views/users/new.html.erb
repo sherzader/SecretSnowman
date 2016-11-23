@@ -30,6 +30,7 @@
     <label for="user_group">Group</label>
     <br>
     <select id="user_group" name="user[group]">
+      <option disabled selected value="-- Please Select --">-- Please Select --</option>
       <% User.groups.each do |group| %>
         <option value="<%= group %>"><%= group %></option>
       <% end %>

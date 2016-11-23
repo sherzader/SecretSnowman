@@ -162,3 +162,7 @@ input[type=submit]:hover{
   background: $bright-green;
   color: white;
 }
+
+a.active {
+  color: red;
+}

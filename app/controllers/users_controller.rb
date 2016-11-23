@@ -7,7 +7,7 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
     if @user.save
       log_in!(@user)
       flash[:errors] = ["Do not forget to update your wish list."]
-      flash[:errors] << []
+      # flash[:errors] << []
       flash[:errors] << ["Go to My Profile to do so."]
       # UserMailer.welcome_email(@user).deliver_later
       redirect_to users_url
@@ -19,6 +19,7 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
 
   #sign up page
   def new
+    redirect_to users_url if current_user
     @user = User.new
   end
 
@@ -28,7 +29,7 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
     # might need to delete when secret snowmen are assigned
     unless params[:user_id].nil?
       flash.now[:errors] = ["Secret Snowmen have not yet been assigned - but thanks for checking eager beaver!"]
-      flash.now[:errors] << []
+      # flash.now[:errors] << []
       flash.now[:errors] << ["In the meantime, feel free to check out the wish lists of your team:"]
     end
   end
@@ -38,6 +39,7 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
 
     if @user.id != current_user.id
       flash.now[:errors] = ["Bad elf!  You cannot edit someone else's profile!"]
+      HackingAttempt.create(user_id: current_user.id, description: "Edit someone else's profile")
     end
   end
 
@@ -52,7 +54,18 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
   end
 
   def show
-    @user = User.find(params[:id])
+    if params[:user_id] && params[:user_id].to_i != current_user.id
+      flash[:errors] = ['Bad elf!  You cannot view another person\'s secret snowman assignment']
+      HackingAttempt.create(user_id: current_user.id, description: "View someone else's secret snowman")
+      redirect_to users_url
+    elsif params[:user_id] && params[:id].to_i != current_user.secretsnowman_id
+      flash[:errors] = ['Nice try buddy!  If you want to view another participants wishlist, simply click on their name below.']
+      HackingAttempt.create(user_id: current_user.id, description: "View nested show page")
+      redirect_to users_url
+    else
+      @user = User.find(params[:id])
+      render :show
+    end
   end
 
   private
