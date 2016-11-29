@@ -7,7 +7,7 @@ class User < ActiveRecord::Base
   validates :email, :session_token, :password_digest,
       :name, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
-  validates :email, :name, :session_token, uniqueness: true
+  validates :name, :session_token, uniqueness: true
   validates :group, inclusion: { in: GROUPS }
   validate :not_a_ghost
 
@@ -33,8 +33,8 @@ class User < ActiveRecord::Base
   def self.remove_secret_santas(group_name)
     users = User.where(group: group_name)
 
-    users.each do |el|
-      user.update_attributes(secretsnowman_id: el)
+    users.each do |user|
+      user.update_attributes(secretsnowman_id: nil)
     end
 
     nil
@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
 
   def not_a_ghost
     errors[:boooo] << " - no hacking!" if group == GROUPS[0]
+    HackingAttempt.create(user_id: 0, description: "Ghost")
   end
 
   def ensure_default_taste

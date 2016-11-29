@@ -3,13 +3,12 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
 
   def create
     @user = User.new(user_params)
+    @user.email ||= "n/a"
 
     if @user.save
       log_in!(@user)
       flash[:errors] = ["Do not forget to update your wish list."]
-      # flash[:errors] << []
-      flash[:errors] << ["Go to My Profile to do so."]
-      # UserMailer.welcome_email(@user).deliver_later
+      flash[:errors] << ["Go to 'My Profile' to do so."]
       redirect_to users_url
     else
       flash.now[:errors] = @user.errors.full_messages
@@ -17,7 +16,6 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
     end
   end
 
-  #sign up page
   def new
     redirect_to users_url if current_user
     @user = User.new
@@ -26,10 +24,8 @@ before_filter :require_login!, only: [:index, :show, :edit, :update]
   def index
     @users = User.where(group: current_user.group)
 
-    # might need to delete when secret snowmen are assigned
     unless params[:user_id].nil?
       flash.now[:errors] = ["Secret Snowmen have not yet been assigned - but thanks for checking eager beaver!"]
-      # flash.now[:errors] << []
       flash.now[:errors] << ["In the meantime, feel free to check out the wish lists of your team:"]
     end
   end
