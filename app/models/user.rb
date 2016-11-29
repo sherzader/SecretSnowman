@@ -48,7 +48,7 @@ class User < ActiveRecord::Base
   end
 
   def new_user_group
-    errors[:group] << "cannot be blank" unless self.id
+    errors[:group] << "cannot be blank" if self.id.nil? && GROUPS.index(self.group).nil?
   end
 
   def ensure_default_taste
