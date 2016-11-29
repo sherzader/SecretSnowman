@@ -18,7 +18,7 @@
         <nav class="navbar navbar-default">
           <ul class="nav nav-pills">
             <li class="logout"><%= button_to "Log Out", session_url, method: :delete, class: "log-out" %></li>
-            <li><a class="<%= params[:action] == "index" ? "active" : "" %>" href="<%= users_url %>">Home</a></li>
+            <li><a class="<%= params[:action] == "index" && !params[:user_id] ? "active" : "" %>" href="<%= users_url %>">Home</a></li>
 
             <% if current_user.secretsnowman_id %>
             <%    url = user_secretsnowman_url(current_user[:id], current_user[:secretsnowman_id]) %>
