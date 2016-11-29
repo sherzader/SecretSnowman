@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
       :name, presence: true
   validates :password, length: { minimum: 6, allow_nil: true }
   validates :name, :session_token, uniqueness: true
-  validates :group, inclusion: { in: GROUPS }
   validate :not_a_ghost
+  validate :new_user_group
 
   belongs_to :secretsnowman, class_name: :User
 
@@ -47,12 +47,23 @@ class User < ActiveRecord::Base
     end
   end
 
+  def new_user_group
+    errors[:group] << "cannot be blank" unless self.id
+  end
+
   def ensure_default_taste
     self.taste ||= "\nglow in the dark yoyo, \nglow in the dark socks,\na cute lunchbox,\na hug".html_safe
   end
 
   def self.find_by_credentials(email, password)
     user = User.find_by(email: email)
+
+    return nil if user.nil?
+    user && user.valid_password?(password) ? user : nil
+  end
+
+  def self.find_by_name_and_pw(name, password)
+    user = User.find_by(name: name)
 
     return nil if user.nil?
     user && user.valid_password?(password) ? user : nil

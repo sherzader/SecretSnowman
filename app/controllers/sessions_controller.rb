@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
   def create
-    user = User.find_by_credentials(
-      params[:user][:email],
+    user = User.find_by_name_and_pw(
+      params[:user][:name],
       params[:user][:password]
     )
 
@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    log_out! #/session/:id destroy, log out page
+    log_out!
     redirect_to login_url
   end
 end
