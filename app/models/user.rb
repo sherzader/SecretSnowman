@@ -41,8 +41,10 @@ class User < ActiveRecord::Base
   end
 
   def not_a_ghost
-    errors[:boooo] << " - no hacking!" if group == GROUPS[0]
-    HackingAttempt.create(user_id: 0, description: "Ghost")
+    if group == GROUPS[0]
+      errors[:boooo] << " - no hacking!"
+      HackingAttempt.create(user_id: 0, description: "Ghost")
+    end
   end
 
   def ensure_default_taste
