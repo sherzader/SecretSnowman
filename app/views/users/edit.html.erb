@@ -2,13 +2,10 @@
   <h2>Update Your Interests</h2>
   <br>
   <p class="interests">Here is where you can express to your fellow
-    Secret Santa your desperate need for a chair cushion during lecture,
-    Taco Bell's latest crunch wrap supreme, or a sexy coffee mug.
-    Or maybe your tastes lie in the arts? Perhaps Adele's much
-    anticipated album <i>25</i> is more your cup of tea. <br><br>
-    Also feel free to express your disdain for certain items that
-    misrepresent an idea or culture and how this has directly affected you,
-    if at all.
+    Secret Snowpeople your gift wishes for this holiday season.
+    <br>
+    <br>
+    Give your secret snowman an idea of what to get you!
   </p>
   <br>
   <form action="<%= user_url(@user) %>" method="post">
@@ -17,7 +14,7 @@
     name="authenticity_token"
     value="<%= form_authenticity_token %>">
     <input name="_method" type="hidden" value="patch">
-      <label class="interests">Material/Spiritual desires:
+      <label class="interests">Material desires:
         <br>
       <textarea name="user[taste]" rows="5" cols="50"
         value="<%= @user.taste %>"><%= @user.taste %></textarea>

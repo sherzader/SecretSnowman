@@ -65,7 +65,8 @@ a:hover{
 .users {
   text-align: center;
   font-family: 'Parisienne', cursive;
-  font-size: 20px;
+  font-size: 24px;
+  letter-spacing: 1px;
 }
 
 .headline::before {
@@ -161,4 +162,8 @@ input[type=submit]{
 input[type=submit]:hover{
   background: $bright-green;
   color: white;
+}
+
+a.active {
+  color: red;
 }
